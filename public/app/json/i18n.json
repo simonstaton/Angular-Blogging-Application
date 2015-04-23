@@ -1,0 +1,94 @@
+{
+	"en":{
+
+		"global": {
+			"title": "Angular application test",
+			"slogan": "some slogan for the application",
+			"pageTitle": "Angular application",
+			"navigation": {
+				"Blog": "/blog"
+			},
+			"footer": {
+				"Blog": "/blog"
+			},
+			"buttons": {
+				"readMore": "Read more",
+				"dashboard": "Dashboard",
+				"logout": "Logout",
+				"login": "Login",
+				"register": "Register"
+			},
+			"notifications": {
+				"pleaseLogin": "Please login",
+				"loggedIn": "You have logged in",
+				"loggedOut": "You have logged out",
+				"login": "Please login",
+				"postCreated": "Your post has been created",
+				"postUpdated": "Your post has been updated",
+				"postNotFound": "Post was not found",
+				"postDeleted": "Post has been deleted"
+			},
+			"languageOptions": {
+				"en": "english",
+				"fr": "french"
+			}
+		},
+
+		"dashboard": {
+			"title": "My Dashboard",
+			"pageTitle": "My Dashboard",
+			"navigation": {
+				"Website": "/",
+				"Posts": "/dashboard/posts",
+				"New Post": "/dashboard/posts/new"
+			}
+		}
+
+	},
+
+	"fr": {
+
+		"global": {
+			"title": "Something something french",
+			"slogan": "French some slogan for the application",
+			"pageTitle": "French Angular application",
+			"navigation": {
+				"BlogFr": "/blog"
+			},
+			"footer": {
+				"BlogFr": "/blog"
+			},
+			"buttons": {
+				"readMore": "Read more Fr",
+				"dashboard": "Dashboard Fr",
+				"logout": "Logout Fr",
+				"login": "Login Fr",
+				"register": "Register Fr"
+			},
+			"notifications": {
+				"pleaseLogin": "Please login Fr",
+				"loggedIn": "You have logged in Fr",
+				"loggedOut": "You have logged out fr",
+				"postCreated": "Your post has been created Fr",
+				"postUpdated": "Your post has been updated Fr",
+				"postNotFound": "Post was not found Fr",
+				"postDeleted": "Post has been deleted Fr"
+			},
+			"languageOptions": {
+				"en": "english",
+				"fr": "french"
+			}
+		},
+
+		"dashboard": {
+			"title": "My Dashboard Fr",
+			"pageTitle": "My Dashboard Fr",
+			"navigation": {
+				"Website Fr": "/",
+				"Posts Fr": "/dashboard/posts",
+				"New Post Fr": "/dashboard/posts/new"
+			}
+		}
+
+	}
+}

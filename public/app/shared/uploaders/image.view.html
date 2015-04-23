@@ -1,0 +1,7 @@
+<div>
+	<div ng-hide="image">Upload <input type="file" ng-file-select="upload($files)" id="uploader"> - {{ uploadProgress }}</div>
+	<div ng-show="image">
+		<a href="{{image}}" target="_blank"><img src="{{image}}" width="200"/></a>
+		<a ng-click="delete(image)" href="">Remove</a>
+	</div>
+</div>

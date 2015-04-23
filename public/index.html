@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="{{i18n.locale}}" class="ie ie6" ng-app="ss" ng-controller="global"> <![endif]-->
+<!--[if IE 7 ]> <html lang="{{i18n.locale}}" class="ie ie7" ng-app="ss" ng-controller="global"> <![endif]-->
+<!--[if IE 8 ]> <html lang="{{i18n.locale}}" class="ie ie8" ng-app="ss" ng-controller="global"> <![endif]-->
+<!--[if IE 9 ]> <html lang="{{i18n.locale}}" class="ie ie9" ng-app="ss" ng-controller="global"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="{{i18n.locale}}" ng-app="ss" ng-controller="global"><!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8"/>
+		<base href="/">
+		<title ng-bind-template={{i18n.store.pageTitle}}></title>
+
+		<link rel="stylesheet" href="/assets/css/default.css" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+
+	</head>
+	<body>
+
+		<div ng-cloak class="container">
+
+			<!-- link views -->
+			<header ng-controller="header" ng-include src="'app/pages/global/header/header.view.html'">
+			</header>
+
+			<div class="wrapper">
+
+				<breadcrumbs></breadcrumbs>
+
+				<notification property="notify"></notification>
+				
+				<div ng-class="{'pageParsed':pageParsed}" class="app" ng-view>
+					
+				</div>
+			</div>
+
+			<footer ng-controller="footer" ng-include src="'app/pages/global/footer/footer.view.html'">
+			</footer>
+
+		</div>
+
+		<!-- Libs -->
+		<script src="/assets/js/libs/node_modules/angular-file-upload/dist/angular-file-upload-shim.min.js"></script> 
+		<script src="/assets/js/libs/node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="/assets/js/libs/node_modules/angular/angular.min.js"></script>
+		<script src="/assets/js/libs/node_modules/angular-cookies/angular-cookies.min.js"></script>
+		<script src="/assets/js/libs/node_modules/angular-route/angular-route.min.js"></script>
+		<script src="/assets/js/libs/node_modules/angular-animate/angular-animate.js"></script>
+		<script src="/assets/js/libs/node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+
+		<!-- Angular application  -->
+		<script src="/assets/js/dist/app.min.js"></script>
+
+		<!-- Dev -->
+
+		<!-- Application entry point and routes 
+		<script src="/app/app.module.js"></script>
+		<script src="/app/app.routes.js"></script>
+		<script src="/app/pages/dashboard/dashboard.routes.js"></script>
+		<script src="/app/pages/blog/blog.routes.js"></script> -->
+
+		<!-- Shared utilities/directives 
+		<script src="/app/shared/i18n.js"></script>
+		<script src="/app/shared/api.js"></script>
+		<script src="/app/shared/utils.js"></script>
+		<script src="/app/shared/notifications.js"></script>
+		<script src="/app/shared/breadcrumbs.js"></script>
+		<script src="/app/shared/editors/controllers/category.editor.controller.js"></script>
+		<script src="/app/shared/editors/controllers/post.editor.controller.js"></script>
+		<script src="/app/shared/uploaders/image.controller.js"></script> -->
+
+		<!-- Global Components 
+		<script src="/app/pages/_Base.js"></script>
+		<script src="/app/pages/global/global.controller.js"></script>
+		<script src="/app/pages/global/header/header.controller.js"></script>
+		<script src="/app/pages/global/footer/footer.controller.js"></script> -->
+
+		<!-- Dashboard Components 
+		<script src="/app/pages/dashboard/dashboard.controller.js"></script>
+		<script src="/app/pages/dashboard/controllers/post.new.controller.js"></script>
+		<script src="/app/pages/dashboard/controllers/post.edit.controller.js"></script>
+		<script src="/app/pages/dashboard/controllers/post.index.controller.js"></script> -->
+
+		<!-- Blog Components 
+		<script src="/app/pages/blog/blog.controller.js"></script> -->
+
+		<!-- Page Components 
+		<script src="/app/pages/login/login.controller.js"></script>
+		<script src="/app/pages/register/register.controller.js"></script> -->
+
+	</body>
+</html>

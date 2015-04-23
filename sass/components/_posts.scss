@@ -1,0 +1,15 @@
+.postContainer {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #575757;
+	&:last-child{
+		border-bottom: 0px;
+	}
+}
+
+.singlePostContainer {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

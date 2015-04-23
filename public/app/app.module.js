@@ -1,0 +1,1 @@
+var ss = angular.module('ss',['ngRoute', 'ngAnimate', 'ngCookies', 'angularFileUpload']);

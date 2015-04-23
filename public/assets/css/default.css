@@ -1,0 +1,519 @@
+/**
+* Sass mixins.
+*
+* @class sass
+*/
+/**
+* Whether or not to use Modernizr progressive enhancement
+* in the mixins. Set to false to turn off.
+*
+* @property useModernizr
+* @type Boolean
+* @default true
+*/
+/**
+* Whether or not to use IE filters as a fallback for linear
+* gradients and rgba colours. Set to false to turn off.
+*
+* @property useIeFilters
+* @type Boolean
+* @default true
+*/
+/**
+* Whether or not to use CSSPie to include IE styling.
+*
+* @property css3Pie
+* @type Boolean
+* @default false
+*/
+/**
+* Shortcut to include hover, active and focus states.
+* This saves declaring focus, hover and active repeatedly.
+*
+* @property altStates
+* @type String
+* @default "&:focus, &:hover, &:active"
+*/
+/**
+* Include a custom font
+*
+* @method font
+* @param name {String} The name of the font
+* @param filename {String} The name of the font file without the extension, relative to the /fonts directory.
+* Expects files in the following formats: eot, eot?, woff, ttf, svg.
+* @param [svgname=name] {String} The name of the svg hash fragment
+* @param [weight=400] {Number} The font weight
+* @param [style=normal] {String} The font style
+* @example
+	// @include font(arial, arial-font-file-name-without-extension, svgname, 200, italic);
+*/
+/**
+* Create a vertical gradient
+*
+* @method gradient
+* @param from {String} The from (top) colour in hex format e.g. #ffffff.
+* @param to {String} The to (bottom) colour in hex format e.g. #ffffff.
+* @param [bgcolor=mix(from,to)] {String} The fallback solid colour, defaults to mixture of from and to.
+* @param [useIe=true] {Boolean} Whether a MS filter should be used for Old IE browsers, defaults to global setting of useIeFilters
+* @example
+	// @include gradient(#ffffff, #000000);
+*/
+/**
+* Create a background image and a gradient
+*
+* @method imgGradient
+* @param img {String} The image url.
+* @param imgSettings {String} The image settings e.g. left top no-repeat.
+* @param from {String} The from (top) colour in hex format e.g. #ffffff.
+* @param to {String} The to (bottom) colour in hex format e.g. #ffffff.
+* @param [bgcolor=mix(from,to)] {String} The fallback solid colour, defaults to mixture of from and to.
+* @example
+	// @include gradient(/images/myImage.jpg, left top no-repeat, #ffffff, #000000);
+*/
+/**
+* Set a background colour using rgba.
+*
+* @method rgba
+* @param color {String} The rgba colour.
+* @param [useIe=true] {Boolean} Whether a MS filter should be used for Old IE browsers, defaults to global setting of useIeFilters.
+* @example
+	// @include rgba(0, 0, 0, 0.5);
+*/
+/**
+* Set a boxShadow
+*
+* @method boxShadow
+* @param left {String} The left position (px).
+* @param top {String} The top position (px).
+* @param blur {String} The blur amount (px).
+* @param spread {String} The spread amount (px).
+* @param color {String} The colour.
+* @param [inset=""] {String} The inset.
+* @param [fallbackborder=opacify(lighten($color, 100*alpha($color)),1)] {String} Fallback border for oldie. Used if useIe is set to false.
+* @param [useIe=false] {Boolean} Whether css3 Pie should be used for Old IE browsers, defaults to global setting of css3Pie.
+* @example
+	// @include box-shadow(10px, 10px, 5px, 5px, #000);
+*/
+/**
+* Set a borderRadius
+*
+* @method borderRadius
+* @param radius {String} Top Left - Top Right - Bottom right - Bottom Left (px).
+* @param [useIe=false] {Boolean} Whether css3 Pie should be used for Old IE browsers, defaults to global setting of css3Pie.
+* @example
+	// @include borderRadius(10px 10px 10px 10px);
+*/
+/**
+* Set a background cover
+*
+* @method bgCover
+* @param colour {String} Fallback colour.
+* @param url {String} Image url without extension.
+* @param ext {String} The image extension. If your image 
+* is called "/images/test.jpg" ipad will look for "/images/test_ipad.jpg" 
+* and iPhone/android will look for "/images/test_iphone.jpg".
+* @example
+	// @include bgCover(#000, /images/my-image, jpg);
+*/
+/**
+* Create a fluid video
+*
+* @method fluidVideo
+* @param [video-width=16] {Number} The width of the video
+* @param [video-height=9] {Number} The height of the video
+* @example
+	// @include fluidVideo();
+*/
+/**
+* Creates a CSS triangle
+*
+* @method triangle
+* @param direction {String} The direction; up, down, left or right.
+* @param width {Number} The width of the triangle.
+* @param height {Number} The height of the triangle.
+* @param color {String} The colour of the triangle.
+* @example
+	// @include triangle(left, 10px, 10px, #000);
+*/
+/**
+* Creates a CSS circle
+*
+* @method circle
+* @param radius {Number} The radius of the circle.
+* @param color {String} The colour of the circle.
+* @example
+	// @include circle(10px, #000);
+*/
+/**
+* Creates a CSS oval. Browsers that don't support 
+* border-radius will fall back to a square.
+*
+* @method oval
+* @param color {String} The colour of the oval.
+* @param width {Number} The width of the oval.
+* @param height {Number} The height of the oval.
+* @example
+	// @include oval(#000, 10px, 15px);
+*/
+/**
+* Prefixed transition.
+*
+* @method transition
+* @param [property=all] {String} The property to transition.
+* @param [duration=0.5s] {String} The duration of the transition.
+* @param [easing=ease] {String} The easing to apply.
+* @param [delay=0s] {String} The delay to apply.
+* @example
+	// @include transition();
+*/
+/**
+* Retina media query mixin.
+*
+* @method retina
+* @example
+*	.someClass { 
+*		background-image:url(someimage.png);
+*		@include retina { 
+*			background-image:url(someimage@2x.png);
+*		} 
+*	}
+*/
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000031}}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000032}}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000033}}
+blockquote, q {
+  quotes: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000034}}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000035}}
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000036}}
+a img {
+  border: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000037}}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000038}}
+input, select {
+  vertical-align: middle;
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\000039}}
+input {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\0000310}}
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/_reset\.scss}line{font-family:\0000311}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\000031}}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #575757;
+  z-index: 10;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\000039}}
+header .headerWrapper {
+  width: 1080px;
+  margin: 0 auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000312}}
+header .headerWrapper .navigation {
+  float: right;
+  vertical-align: top;
+  position: relative;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000316}}
+header .headerWrapper .navigation ul.navigationLinks {
+  min-width: 500px;
+  list-style: none;
+  text-align: right;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 35px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000323}}
+header .headerWrapper .navigation ul.navigationLinks li {
+  line-height: 35px;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000329}}
+header .headerWrapper .navigation ul.navigationLinks li a {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000334}}
+header .headerWrapper .navigation ul.navigationLinks li a:hover {
+  background: #fff;
+  color: #000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000340}}
+header .headerWrapper .navigation ul.navigationLinks li:last-child {
+  padding-right: 0px;
+  border-right: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000345}}
+header .headerWrapper .navigation ul.microLinks {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  min-width: 300px;
+  text-align: right;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000354}}
+header .headerWrapper .navigation ul.microLinks li {
+  display: inline-block;
+  line-height: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000357}}
+header .headerWrapper .navigation ul.microLinks li a {
+  color: #fff;
+  font-size: 13px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000362}}
+header .headerWrapper .navigation ul.microLinks ul.languageToggle {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-left: 5px;
+  padding-right: 5px;
+  background: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000369}}
+header .headerWrapper .navigation ul.microLinks ul.languageToggle li {
+  display: inline-block;
+  padding-left: 5px;
+  line-height: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000373}}
+header .headerWrapper .navigation ul.microLinks ul.languageToggle li a {
+  color: #000;
+  font-size: 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000381}}
+header .headerWrapper .logo {
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000383}}
+header .headerWrapper .logo h1.title {
+  color: #fff;
+  font-size: 24px;
+  line-height: 41.17647px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_header\.scss}line{font-family:\0000388}}
+header .headerWrapper .logo p.slogan {
+  color: #fff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\000031}}
+footer {
+  height: 70px;
+  width: 100%;
+  height: auto;
+  background: #575757;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\000036}}
+footer .footerWrapper {
+  margin: 0 auto;
+  width: 1080px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\000039}}
+footer .footerWrapper ul.footerLinks {
+  list-style: none;
+  width: 24%;
+  margin-right: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\0000317}}
+footer .footerWrapper ul.footerLinks li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\0000321}}
+footer .footerWrapper ul.footerLinks li:last-child {
+  border-bottom: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_footer\.scss}line{font-family:\0000324}}
+footer .footerWrapper ul.footerLinks li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+@-webkit-keyframes slide {
+  /* line 3, ../../../sass/components/_app.scss */
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slide {
+  /* line 7, ../../../sass/components/_app.scss */
+  100% {
+    left: 0;
+  }
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000310}}
+.wrapper {
+  width: 1080px;
+  margin-top: 10px;
+  margin: 0 auto;
+  position: relative;
+  height: auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000316}}
+.wrapper .app {
+  bottom: 0;
+  left: 0px;
+  background: #fff;
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000323}}
+.wrapper .app.pageParsed.ng-enter {
+  left: 100%;
+  position: absolute;
+  z-index: 9;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000330}}
+.wrapper .app.pageParsed.ng-leave {
+  z-index: 8;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000336}}
+.wrapper ul.breadcrumbs {
+  list-style: none;
+  border-bottom: 1px dashed #575757;
+  margin-bottom: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000340}}
+.wrapper ul.breadcrumbs li {
+  margin-top: 5px;
+  padding-bottom: 5px;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_app\.scss}line{font-family:\0000346}}
+.wrapper ul.breadcrumbs li a {
+  font-size: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_posts\.scss}line{font-family:\000031}}
+.postContainer {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #575757;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_posts\.scss}line{font-family:\000036}}
+.postContainer:last-child {
+  border-bottom: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/components\/_posts\.scss}line{font-family:\0000311}}
+.singlePostContainer {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/default\.scss}line{font-family:\000034}}
+.row:after {
+  visibility: hidden;
+  clear: both;
+  content: ".";
+  height: 0;
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/default\.scss}line{font-family:\0000313}}
+body {
+  font: 100%/20px 'AdelleWeb-Regular', Arial, sans-serif;
+  letter-spacing: 0;
+  color: #434A51;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/default\.scss}line{font-family:\0000321}}
+.hidden {
+  display: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/default\.scss}line{font-family:\0000325}}
+.clearfix:after {
+  content: ".";
+  clear: both;
+  height: 0;
+  display: block;
+  visibility: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/C\:\/Users\/sstanton\/Documents\/Projects\/AngularTraining\/repo\/sass\/default\.scss}line{font-family:\0000333}}
+.container {
+  margin-top: 70px;
+}

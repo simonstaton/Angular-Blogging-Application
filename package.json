@@ -1,0 +1,56 @@
+{
+	"name": "Angular-Blog",
+
+	"main": "server.js",
+
+	"version": "0.0.1",
+
+	"private": true,
+
+	"dependencies": {
+		"connect": "*",
+		"express": "*",
+		"express-session": "*",
+		"body-parser": "*",
+		"cookie-parser": "*",
+		"mongoose": "*",
+		"passport": "*",
+		"passport-local": "*",
+		"connect-flash": "*",
+		"bcrypt-nodejs": "*",
+		"prerender-node": "*",
+		"angular-route": "*",
+		"angular-cookies": "*",
+		"angular-animate": "*",
+		"angular": "*",
+		"jquery": "1.*",
+		"angular-file-upload": "1.*",
+		"multiparty": "*",
+		"node-uuid": "*"
+	},
+
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-jshint": "~0.9.2",
+		"grunt-contrib-uglify": "~0.4.0",
+		"grunt-contrib-watch": "~0.4.4",
+		"grunt-nodemon": "~0.3.0",
+		"grunt-concurrent": "~0.5.0",
+		"grunt-contrib-compass": "0.7.x",
+		"grunt-contrib-copy": "~0.5.0",
+		"grunt-shell": "*",
+		"grunt-contrib-clean": "~0.5.0"
+	},
+
+	"js": {
+		"source": "public/app/",
+		"dist": "public/assets/js/dist",
+		"components": "public/assets/js/components",
+		"libs": "public/assets/js/libs"
+	},
+
+	"css": {
+		"source": "sass",
+		"path": "public/assets/css"
+	}
+}

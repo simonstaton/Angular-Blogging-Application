@@ -1,0 +1,11 @@
+<div class="footerWrapper">
+	<ul class="footerLinks">
+		<li ng-repeat="(link,href) in i18n.store.footer" ng-class="{active:href==location.path()}"><a href="{{href}}">{{link}}</a></li>
+	</ul>
+	<ul class="footerLinks">
+		<li ng-show="api.session"><a href="/dashboard">{{ i18n.store.buttons.dashboard }}</a></li>
+		<li ng-show="api.session"><a href="" ng-click="logout()">{{ i18n.store.buttons.logout }}</a></li>
+		<li ng-hide="api.session"><a href="/login">{{ i18n.store.buttons.login }}</a></li>
+		<li ng-hide="api.session"><a href="/register">{{ i18n.store.buttons.register }}</a></li>
+	</ul>
+</div>

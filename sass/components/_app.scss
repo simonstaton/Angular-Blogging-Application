@@ -1,0 +1,51 @@
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
+
+.wrapper {
+	width: $wrapperWidth;
+	margin-top: 10px;
+	margin: 0 auto;
+	position: relative;
+	height: auto;
+	.app {
+		bottom: 0; 
+		left: 0px;
+		background: #fff;
+		position: relative; 
+		top: 0;  
+		width: 100%; 
+		&.pageParsed.ng-enter {
+			left: 100%;
+			position: absolute; 
+		   // -webkit-animation: slide 0.2s forwards;
+		   // animation: slide 0.2s forwards;
+			z-index: 9; 
+		}
+		&.pageParsed.ng-leave {
+		    //-webkit-animation: slide 0.2s forwards;
+		    //animation: slide 0.2s forwards;
+			z-index: 8; 
+		}
+	}
+	ul.breadcrumbs {
+		list-style: none;
+		border-bottom: 1px dashed #575757;
+		margin-bottom: 5px;
+		li {
+			margin-top: 5px;
+			padding-bottom: 5px;
+			display: inline-block;
+			font-size: 12px;
+			margin-right: 5px;
+			a {
+				font-size: 12px;
+			}
+		}
+	}
+}

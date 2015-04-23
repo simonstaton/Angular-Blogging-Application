@@ -1,0 +1,35 @@
+@import "base";
+
+.row {
+	&:after {
+		visibility:hidden;
+		clear:both;
+		content:".";
+		height:0;
+		display:block;
+	}
+}
+
+body {
+	font: 100%/20px 'AdelleWeb-Regular', Arial, sans-serif;
+	letter-spacing: 0;
+	color: #434A51;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
+.clearfix:after{
+	content:".";
+	clear:both;
+	height:0;
+	display:block;
+	visibility: hidden;
+}
+
+.container {
+	margin-top: $headerHeight;
+}

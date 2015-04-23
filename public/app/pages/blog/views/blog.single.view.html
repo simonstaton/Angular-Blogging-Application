@@ -1,0 +1,9 @@
+
+<div class="singlePostContainer">
+	<div>
+		<h1>{{ post.title }}</h1>
+		<p>{{ post.date | date }}</p>
+		<img ng-show="post.image" src="{{post.image}}" width="100%" />
+		<p>{{ post.content }}</p>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="headerWrapper clearfix">
+	<div class="navigation">
+		
+		<ul class="navigationLinks">
+			<li ng-repeat="(link,href) in i18n.store.navigation" ng-class="{active:href==location.path()}"><a href="{{href}}">{{link}}</a></li>
+		</ul>
+
+		<ul class="microLinks">
+			<li ng-show="api.session"><a href="/dashboard">{{ i18n.store.buttons.dashboard }}</a></li>
+			<li ng-show="api.session"><a href="" ng-click="logout()">{{ i18n.store.buttons.logout }}</a></li>
+			<li ng-hide="api.session"><a href="/login">{{ i18n.store.buttons.login }}</a></li>
+			<li ng-hide="api.session"><a href="/register">{{ i18n.store.buttons.register }}</a></li>
+			<li>
+				<i18n-toggle></i18n-toggle>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="logo">
+		<h1 class="title">{{ i18n.store.title }}</h1>
+		<p class="slogan">{{ i18n.store.slogan }}</p>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+<div ng-repeat="post in posts | limitTo:5 | orderBy:date" class="postContainer">
+	<a href="/blog/{{ post.slug }}">{{ post.title }}</a>
+	<p>{{ post.content  | limitTo:100 }}</p>
+	<a href="/blog/{{ post.slug }}">{{i18n.store.buttons.readMore}}</a>
+</div>

@@ -1,0 +1,363 @@
+/**
+* Sass mixins.
+*
+* @class sass
+*/
+
+/**
+* Whether or not to use Modernizr progressive enhancement
+* in the mixins. Set to false to turn off.
+*
+* @property useModernizr
+* @type Boolean
+* @default true
+*/
+$useModernizr: true;
+
+/**
+* Whether or not to use IE filters as a fallback for linear
+* gradients and rgba colours. Set to false to turn off.
+*
+* @property useIeFilters
+* @type Boolean
+* @default true
+*/
+$useIeFilters: true;
+
+/**
+* Whether or not to use CSSPie to include IE styling.
+*
+* @property css3Pie
+* @type Boolean
+* @default false
+*/
+$css3Pie: false;
+
+/**
+* Shortcut to include hover, active and focus states.
+* This saves declaring focus, hover and active repeatedly.
+*
+* @property altStates
+* @type String
+* @default "&:focus, &:hover, &:active"
+*/
+$altStates: "&:focus, &:hover, &:active";
+
+/**
+* Include a custom font
+*
+* @method font
+* @param name {String} The name of the font
+* @param filename {String} The name of the font file without the extension, relative to the /fonts directory.
+* Expects files in the following formats: eot, eot?, woff, ttf, svg.
+* @param [svgname=name] {String} The name of the svg hash fragment
+* @param [weight=400] {Number} The font weight
+* @param [style=normal] {String} The font style
+* @example
+	// @include font(arial, arial-font-file-name-without-extension, svgname, 200, italic);
+*/
+@mixin font($name,$filename,$svgname: $name,$weight: 400,$style:normal) {
+
+	@font-face {
+		font-family: $name;
+		src: url('/fonts/' + $filename + '.eot');
+		src: url('/fonts/' + $filename + '.eot?') format('embedded-opentype'),
+			 url('/fonts/' + $filename + '.woff') format('woff'),
+			 url('/fonts/' + $filename + '.ttf') format('truetype'),
+			 url('/fonts/' + $filename + '.svg#' + $svgname) format('svg');
+		font-weight:$weight;
+		font-style:$style;
+	}
+}
+
+/**
+* Create a vertical gradient
+*
+* @method gradient
+* @param from {String} The from (top) colour in hex format e.g. #ffffff.
+* @param to {String} The to (bottom) colour in hex format e.g. #ffffff.
+* @param [bgcolor=mix(from,to)] {String} The fallback solid colour, defaults to mixture of from and to.
+* @param [useIe=true] {Boolean} Whether a MS filter should be used for Old IE browsers, defaults to global setting of useIeFilters
+* @example
+	// @include gradient(#ffffff, #000000);
+*/
+@mixin gradient($from, $to, $bgcolor: mix($from, $to), $useIe: $useIeFilters) {
+  background-color: $bgcolor;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+  background-image: -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image:    -moz-linear-gradient(top, $from, $to); // FF3.6+
+  background-image:      -o-linear-gradient(top, $from, $to); // Opera 11.10+
+  background-image:         linear-gradient(to bottom, $from, $to);
+	  @if $useIe == true {
+		  .ie9 &,
+		  .ie8 &,
+		  .ie7 &,
+		  .ie6 &{
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#{ie-hex-str($from)}', endColorstr='#{ie-hex-str($to)}');";
+			filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#{ie-hex-str($from)}', endColorstr='#{ie-hex-str($to)}');;
+			zoom: 1;
+	  }
+  }
+}
+
+/**
+* Create a background image and a gradient
+*
+* @method imgGradient
+* @param img {String} The image url.
+* @param imgSettings {String} The image settings e.g. left top no-repeat.
+* @param from {String} The from (top) colour in hex format e.g. #ffffff.
+* @param to {String} The to (bottom) colour in hex format e.g. #ffffff.
+* @param [bgcolor=mix(from,to)] {String} The fallback solid colour, defaults to mixture of from and to.
+* @example
+	// @include gradient(/images/myImage.jpg, left top no-repeat, #ffffff, #000000);
+*/
+@mixin imgGradient($img, $imgSettings, $from, $to, $bgcolor: mix($from, $to)) {
+  background:  url($img) $imgSettings $bgcolor;
+  background-image: url($img), -webkit-gradient(linear, left top, left bottom, from($from), to($to)); // Saf4+, Chrome
+  background-image: url($img), -webkit-linear-gradient(top, $from, $to); // Chrome 10+, Saf5.1+, iOS 5+
+  background-image: url($img), -moz-linear-gradient(top, $from, $to); // FF3.6+
+  background-image: url($img), -o-linear-gradient(top, $from, $to); // Opera 11.10+
+  background-image: url($img), linear-gradient(to bottom, $from, $to);
+}
+
+/**
+* Set a background colour using rgba.
+*
+* @method rgba
+* @param color {String} The rgba colour.
+* @param [useIe=true] {Boolean} Whether a MS filter should be used for Old IE browsers, defaults to global setting of useIeFilters.
+* @example
+	// @include rgba(0, 0, 0, 0.5);
+*/
+@mixin rgba($color, $useIe: $useIeFilters) {
+	background-color: opacify(lighten($color, 100*alpha($color)),1);
+	background-color: $color;
+	@if $useIe == true {
+	  	.ie8 & {
+			background:transparent;
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color)}', endColorstr='#{ie-hex-str($color)}')";
+		}
+		.ie7 & {
+			background:transparent;
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color)}', endColorstr='#{ie-hex-str($color)}');
+			zoom:1;
+		}
+  	}
+}
+
+/**
+* Set a boxShadow
+*
+* @method boxShadow
+* @param left {String} The left position (px).
+* @param top {String} The top position (px).
+* @param blur {String} The blur amount (px).
+* @param spread {String} The spread amount (px).
+* @param color {String} The colour.
+* @param [inset=""] {String} The inset.
+* @param [fallbackborder=opacify(lighten($color, 100*alpha($color)),1)] {String} Fallback border for oldie. Used if useIe is set to false.
+* @param [useIe=false] {Boolean} Whether css3 Pie should be used for Old IE browsers, defaults to global setting of css3Pie.
+* @example
+	// @include box-shadow(10px, 10px, 5px, 5px, #000);
+*/
+@mixin boxShadow ($left, $top, $blur, $spread, $color, $inset: "", $fallbackborder: opacify(lighten($color, 100*alpha($color)),1), $useIe: $css3Pie) {
+	box-shadow: $left $top $blur $spread $color #{$inset};
+
+    @if $useIe == true {
+		.ie8 &,
+		.ie7 & {
+			@extend %css3Pie;
+		}
+	} @else {
+		.ie7 &, .ie8 & {
+		    border:1px solid $fallbackborder;
+		}
+	}
+}
+
+/**
+* Set a borderRadius
+*
+* @method borderRadius
+* @param radius {String} Top Left - Top Right - Bottom right - Bottom Left (px).
+* @param [useIe=false] {Boolean} Whether css3 Pie should be used for Old IE browsers, defaults to global setting of css3Pie.
+* @example
+	// @include borderRadius(10px 10px 10px 10px);
+*/
+@mixin borderRadius($radius, $useIe: $css3Pie) {
+	border-radius: $radius;
+	
+	@if $useIe == true {
+		.ie8 &,
+		.ie7 & {
+			@extend %css3Pie;
+		}
+	}
+}
+
+/**
+* Set a background cover
+*
+* @method bgCover
+* @param colour {String} Fallback colour.
+* @param url {String} Image url without extension.
+* @param ext {String} The image extension. If your image 
+* is called "/images/test.jpg" ipad will look for "/images/test_ipad.jpg" 
+* and iPhone/android will look for "/images/test_iphone.jpg".
+* @example
+	// @include bgCover(#000, /images/my-image, jpg);
+*/
+@mixin bgCover($colour, $url, $ext) {
+
+	background:$colour url($url + "." + $ext) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;	
+	.ipad &	{
+		background:$colour url($url + "_ipad." + $ext) no-repeat center top;
+		background-size:1024px 768px;
+	}
+	.iphone &,
+	.android & {
+		background:$colour url($url + "_iphone." + $ext) no-repeat center top;
+		background-size:480px 360px;
+	}
+}
+
+/**
+* Create a fluid video
+*
+* @method fluidVideo
+* @param [video-width=16] {Number} The width of the video
+* @param [video-height=9] {Number} The height of the video
+* @example
+	// @include fluidVideo();
+*/
+@mixin fluidVideo($video-width:16, $video-height:9) {
+	position: relative;
+	padding-bottom: percentage($video-height/$video-width); // Defaults to 16:9
+	height: 0;
+	& object,
+	& embed,
+	& iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/**
+* Creates a CSS triangle
+*
+* @method triangle
+* @param direction {String} The direction; up, down, left or right.
+* @param width {Number} The width of the triangle.
+* @param height {Number} The height of the triangle.
+* @param color {String} The colour of the triangle.
+* @example
+	// @include triangle(left, 10px, 10px, #000);
+*/
+@mixin triangle($direction, $width, $height, $color) {
+  width: 0;
+  height: 0;
+  @if $direction == up {
+    border-bottom: $height solid $color;
+    border-right: $width solid transparent;
+    border-left: $width solid transparent;
+  } @else if $direction == down {
+    border-top: $height solid $color;
+    border-right: $width solid transparent;
+    border-left: $width solid transparent;
+  } @else if $direction == left {
+    border-right: $height solid $color;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+  } @else { // otherwise let's assume it's facing right
+    border-left: $height solid $color;
+    border-top: $width solid transparent;
+    border-bottom: $width solid transparent;
+  }
+}
+
+/**
+* Creates a CSS circle
+*
+* @method circle
+* @param radius {Number} The radius of the circle.
+* @param color {String} The colour of the circle.
+* @example
+	// @include circle(10px, #000);
+*/
+@mixin circle($radius, $color) {
+   width: $radius*2;
+   height: $radius*2;
+   background: $color; 
+   @include border-radius($radius);
+}
+
+/**
+* Creates a CSS oval. Browsers that don't support 
+* border-radius will fall back to a square.
+*
+* @method oval
+* @param color {String} The colour of the oval.
+* @param width {Number} The width of the oval.
+* @param height {Number} The height of the oval.
+* @example
+	// @include oval(#000, 10px, 15px);
+*/
+@mixin oval($color, $width, $height) {
+   width: $width; 
+   height: $height; 
+   background: $color; 
+   $temp: $width/4;
+   -moz-border-radius: #{$height} / #{$width/4};
+   -webkit-border-radius: #{$height} / #{$width/4};
+   border-radius: #{$height} / #{$width/4};
+}
+
+/**
+* Prefixed transition.
+*
+* @method transition
+* @param [property=all] {String} The property to transition.
+* @param [duration=0.5s] {String} The duration of the transition.
+* @param [easing=ease] {String} The easing to apply.
+* @param [delay=0s] {String} The delay to apply.
+* @example
+	// @include transition();
+*/
+@mixin transition($property: all, $duration: 0.5s, $easing: ease, $delay: 0s) {
+   -moz-transition: $property $duration $easing $delay;
+   -webkit-transition: $property $duration $easing $delay;
+   -o-transition: $property $duration $easing $delay;
+   -ms-transition: $property $duration $easing $delay;
+   transition: $property $duration $easing $delay;
+}
+
+/**
+* Retina media query mixin.
+*
+* @method retina
+* @example
+*	.someClass { 
+*		background-image:url(someimage.png);
+*		@include retina { 
+*			background-image:url(someimage@2x.png);
+*		} 
+*	}
+*/
+@mixin retina {
+	@media
+		only screen and (-webkit-min-device-pixel-ratio: 2),
+		only screen and (   min--moz-device-pixel-ratio: 2),
+		only screen and (     -o-min-device-pixel-ratio: 2/1),
+		only screen and (        min-device-pixel-ratio: 2),
+		only screen and (                min-resolution: 192dpi),
+		only screen and (                min-resolution: 2dppx) { @content; }
+}
